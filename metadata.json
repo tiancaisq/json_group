@@ -1,0 +1,6 @@
+{
+  "name": "数构编辑器 · 在线结构化数据编辑器",
+  "description": "面向 JSON、JSONC 与嵌套表达式的在线数据编辑器，支持智能括号匹配、光标左括号一键跳转右括号、结构大纲导航与实时语法校验。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

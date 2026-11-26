@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    font-family: var(--font-sans);
+  }
+}
+
+.font-code {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* Precision editor sync: textarea and highlighted mirror share identical geometry */
+.editor-layer {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 22px;
+  letter-spacing: 0px;
+  tab-size: 2;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+@keyframes bracket-arrive {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7), inset 0 0 0 1.5px rgba(37, 99, 235, 0.95);
+    background-color: rgba(37, 99, 235, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0), inset 0 0 0 1.5px rgba(37, 99, 235, 0.95);
+    background-color: rgba(37, 99, 235, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0), inset 0 0 0 1.5px rgba(37, 99, 235, 0.85);
+    background-color: rgba(37, 99, 235, 0.16);
+  }
+}
+
+.bracket-flash {
+  animation: bracket-arrive 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2px;
+}
+
+.bracket-active-matched {
+  background-color: rgba(59, 130, 246, 0.2);
+  box-shadow: inset 0 0 0 1.5px rgba(37, 99, 235, 0.9);
+  border-radius: 2px;
+}
+
+.dark .bracket-active-matched {
+  background-color: rgba(96, 165, 250, 0.25);
+  box-shadow: inset 0 0 0 1.5px rgba(96, 165, 250, 0.95);
+}
+
+.bracket-active-unmatched {
+  background-color: rgba(239, 68, 68, 0.24);
+  box-shadow: inset 0 0 0 1.5px rgba(220, 38, 38, 0.95);
+  border-radius: 2px;
+}
+
+.bracket-partner {
+  background-color: rgba(245, 158, 11, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(217, 119, 6, 0.9);
+  border-radius: 2px;
+}
+
+.dark .bracket-partner {
+  background-color: rgba(251, 191, 36, 0.25);
+  box-shadow: inset 0 0 0 1.5px rgba(251, 191, 36, 0.95);
+}
+
+/* Subtle custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.55);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bracket-flash {
+    animation: none;
+  }
+}
